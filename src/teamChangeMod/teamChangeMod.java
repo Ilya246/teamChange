@@ -114,12 +114,7 @@ public class teamChangeMod extends Plugin {
         });
         handler.<Player>register("spectate", "Spectate the game. Use while spectating to stop spectating.", (args, player) -> {
             if (player.team().active() || player.unit().isNull()) {
-                Team newTeam = null;
-                for (Team t : Team.all) {
-                    if (t.core() == null) {
-                        newTeam = t;
-                    }
-                }
+                Team newTeam = Structs.find(Team.all, t -> t.data().noCores());
                 if (newTeam != null) {
                     player.clearUnit();
                     player.team(newTeam);
