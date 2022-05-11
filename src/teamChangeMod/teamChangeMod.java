@@ -77,12 +77,16 @@ public class teamChangeMod extends Plugin{
                     if(newTeam != null){
                         if(state.rules.pvp && newTeam.team != Team.derelict && !newTeam.cores.isEmpty()){
                             int newTeamPlayers = 1; // intentionally set to 1 and not 0 to account for new player
+                            int activePlayers = 0;
                             for(Player p : Groups.player){
                                 if(p.team() == newTeam.team){
                                     newTeamPlayers++;
-                                };
+                                }
+                                if(p.team().active()){
+                                    activePlayers++;
+                                }
                             }
-                            if(newTeamPlayers / Groups.player.size() * state.teams.active.size <= Config.teamChangeTolerance.f()){
+                            if(newTeamPlayers / activePlayers * state.teams.active.size <= Config.teamChangeTolerance.f()){
                                 player.clearUnit();
                                 player.team(newTeam.team);
                                 Call.sendMessage("[accent]Player " + player.coloredName() + " [accent]changed team to [#" + newTeam.team.color + "]" + newTeam.team.name + "[].");
