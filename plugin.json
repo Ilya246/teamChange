@@ -3,5 +3,6 @@
   "author": "[USMP]Ilya246",
   "main": "teamChangeMod.teamChangeMod",
   "description": "Allows players to change team.",
-  "version": 1.0
+  "version": 1.0,
+  "minGameVersion": 142
 }
